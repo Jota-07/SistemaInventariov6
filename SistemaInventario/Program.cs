@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using SistemaInventario.AccesoDatos.data;
+using SistemaInventario.AccesoDatos.Repositorio.IRepositorio;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +14,11 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews().AddRazorRuntimeCompilation();
+
+//Agregamos el servicio de Unidad de Trabajo- tiene que ser antes de var app = builder.Build();//
+//El AddScoped permite que la instancia se cree 1 ves y pueda usarse las veces que se requiera//
+
+builder.Services.AddScoped<IUnidadTrabajo, IUnidadTrabajo>();
 
 var app = builder.Build();
 
