@@ -13,6 +13,8 @@ namespace SistemaInventario.AccesoDatos.Repositorio.IRepositorio
         //envolver los repositorios que tenemos
         IBodegaRepositorio Bodega { get;  }
 
+        ICategoriaRepositorio Categoria { get; }
+
         //metodo asincrono guardar
         Task Guardar();
 
